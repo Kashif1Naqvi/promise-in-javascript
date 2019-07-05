@@ -137,6 +137,7 @@ Promise.all([promise1(true),promise2(true),promise3(true)]).then((msg)=>{
  * in the above example if you can use all cannot specify the response when the first file accure but in "race"
   cannot do the same race method can  run that response that can be run in very small bit of time so we can understand it using example
   above promise is same just check who one done first using race method
+  in race all promises resolve otherwise Error show
  */
 let promise1 = (isRequire)=>{
   return new Promise((resolve,reject)=>{
@@ -159,7 +160,7 @@ let promise3 = (isRequire) => {
   })
 }
 
- Promise.race([promise1(true),promise2(true),promise3(true)]).then((msg)=>console.log(msg)).catch((err)=>console.log("Error:",err))
+ Promise.race([promise1(),promise2(),promise3()]).then((msg)=>console.log(msg)).catch((err)=>console.log("Error:",err))
 
 
 
