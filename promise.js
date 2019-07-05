@@ -108,21 +108,21 @@ Promise.all([promise1(true),promise2(true),promise3(true)]).then((msg)=>{
  * if we check it properly then you can check it with time 
  */
 
-let promise1 = ()=>{
+let promise1 = (isRequire)=>{
   return new Promise((resolve,reject)=>{
     //        method name , time ,message
     setTimeout(resolve,300,"Done promise 1")
   })
 }
 
-let promise2 = () =>{
+let promise2 = (isRequire) =>{
   return new Promise((resolve,reject)=>{
        //        method name , time ,message
        setTimeout(resolve,100,"Done promise 2")
   })
 }
 
-let promise3 = () => {
+let promise3 = (isRequire) => {
   return new Promise((resolve,reject)=>{
       //        method name , time ,message
       setTimeout(resolve,100,"Done promise 3")
@@ -133,7 +133,33 @@ Promise.all([promise1(true),promise2(true),promise3(true)]).then((msg)=>{
   console.log("Promose!!",msg)
 }).catch((err)=>console.log("Err:",err))
 
+/**
+ * in the above example if you can use all cannot specify the response when the first file accure but in "race"
+  cannot do the same race method can  run that response that can be run in very small bit of time so we can understand it using example
+  above promise is same just check who one done first using race method
+ */
+let promise1 = (isRequire)=>{
+  return new Promise((resolve,reject)=>{
+    //        method name , time ,message
+    setTimeout(resolve,200,"Done promise 1")
+  })
+}
 
+let promise2 = (isRequire) =>{
+  return new Promise((resolve,reject)=>{
+       //        method name , time ,message
+       setTimeout(resolve,300,"Done promise 2")
+  })
+}
+
+let promise3 = (isRequire) => {
+  return new Promise((resolve,reject)=>{
+      //        method name , time ,message
+      setTimeout(resolve,100,"Done promise 3")
+  })
+}
+
+ Promise.race([promise1(true),promise2(true),promise3(true)]).then((msg)=>console.log(msg)).catch((err)=>console.log("Error:",err))
 
 
 
