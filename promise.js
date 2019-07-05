@@ -1,4 +1,4 @@
-// Promise mean do promise promoise is accepted ore rejected dpend on you promise you can do that promise or not do that deppended on you
+// Promise mean do promise promoise is accepted or rejected depend on you promise you can fullfill that promise or not do that deppended on you
 // i can clear it with very simple example
 
 
@@ -11,7 +11,8 @@ promise.then(()=>{ console.log("the promise is resolve") })
 
 
 
-// i can explain with conditions
+// i can explain with conditions ,if you pass promise in parameters then also apply the conditions base on your requrments
+// if i write a pure name isRequire it mean i pass also for checking the conditions depend on you but i pass true or false
 
 let promise = new Promise((res,rej)=>{
   let isRequire = true
@@ -63,9 +64,9 @@ let promise1 = (isRequire)=>{
 let promise2 = (isRequire) =>{
   return new Promise((resolve,reject)=>{
     if(isRequire){
-      resolve("Promise 2 cannot resolve")
+      resolve("Promise 2 resolve")
     }else{
-      reject("Promise 2 canreject ")
+      reject("Promise 2 can reject ")
     }
   })
 }
@@ -91,3 +92,61 @@ promise1().then((msg)=>{
 }).then((m)=>console.log("promise 3 is resolve",m))
 
 .catch(err=>console.log("Err:",err))
+// --------------------------------------------------------------------------------------------------------
+
+/* 
+ so that we can dicuss the method of promise that can use to less the code so we dicuss in detail firstly we can 
+ work on 'all' method is javascript.Promisein this method you can target the Multple promises in one arry then use it.
+*/
+Promise.all([promise1(true),promise2(true),promise3(true)]).then((msg)=>{
+  console.log("Promose!!",msg)
+}).catch((err)=>console.log("Err:",err))
+
+
+
+/**
+ * if we check it properly then you can check it with time 
+ */
+
+let promise1 = ()=>{
+  return new Promise((resolve,reject)=>{
+    //        method name , time ,message
+    setTimeout(resolve,300,"Done promise 1")
+  })
+}
+
+let promise2 = () =>{
+  return new Promise((resolve,reject)=>{
+       //        method name , time ,message
+       setTimeout(resolve,100,"Done promise 2")
+  })
+}
+
+let promise3 = () => {
+  return new Promise((resolve,reject)=>{
+      //        method name , time ,message
+      setTimeout(resolve,100,"Done promise 3")
+  })
+}
+
+Promise.all([promise1(true),promise2(true),promise3(true)]).then((msg)=>{
+  console.log("Promose!!",msg)
+}).catch((err)=>console.log("Err:",err))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
